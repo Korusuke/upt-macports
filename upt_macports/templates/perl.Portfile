@@ -10,11 +10,24 @@ revision            0
 {% endblock %}
 
 {% block versions %}
+{%- if (pkg.upt_pkg.requirements.run|length > 0) or (pkg.upt_pkg.requirements.test|length > 0) %}
 if {${perl5.major} != ""} {
+    {%- if pkg.upt_pkg.requirements.run|length > 0 %}
+
     depends_lib-append \
-                    {% for i in pkg.upt_pkg.requirements.run %}
+                    {% for i in pkg.upt_pkg.requirements.run|sort(attribute='name') %}
                     port:p${perl5.major}-{{i.name|replace('::','-')|lower}} {% if loop.index != pkg.upt_pkg.requirements.run|length %}\{% endif %}
 
                     {% endfor %}
+    {% endif %}
+    {%- if pkg.upt_pkg.requirements.test|length > 0 %}
+
+    depends_test-append \
+                    {% for i in pkg.upt_pkg.requirements.test|sort(attribute='name') %}
+                    port:p${perl5.major}-{{i.name|replace('::','-')|lower}} {% if loop.index != pkg.upt_pkg.requirements.run|length %}\{% endif %}
+
+                    {% endfor %}
+    {% endif %}
 }
+{% endif %}
 {% endblock %}
