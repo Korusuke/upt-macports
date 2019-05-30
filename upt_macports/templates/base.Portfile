@@ -16,7 +16,7 @@ platforms           darwin
 # TODO: uncomment the following line if no architecture-dependent files are installed, otherwise remove
 # supported_archs     noarch
 license             {{ pkg.licenses }}
-# maintainers         {example.org:julesverne @GitHub-handle} openmaintainer # TODO
+maintainers         {example.org:julesverne @GitHub-handle} openmaintainer # TODO
 
 description         {{ pkg.upt_pkg.summary }}
 long_description    ${description}

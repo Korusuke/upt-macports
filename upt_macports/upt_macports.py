@@ -11,7 +11,7 @@ class MacPortsPackage(object):
 
     def create_package(self, upt_pkg, output):
         self.upt_pkg = upt_pkg
-        self.logger.info(f'Hello, creating the package')
+        # self.logger.info(f'Hello, creating the package')
         print(self._render_makefile_template())
 
     def _render_makefile_template(self):
